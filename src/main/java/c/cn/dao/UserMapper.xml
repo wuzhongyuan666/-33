@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 
+	namespace唯一表示此名字下的crud语句
+ -->
+<mapper namespace="c.cn.dao.UserMapper">
+		<!--当实体类和数据库完全不一致			采用别名-->
+		<resultMap id="UserMap" type="user">
+			<id property="id" column="user_id"></id>
+			<result property="name" column="user_name" ></result>
+			<result property="password" column="user_password"></result>
+			<result property="phone" column="user_phone"></result>
+			<result property="sex" column="user_sex"></result>
+			<result property="birth" column="user_birth"></result>
+		</resultMap>
+
+	<select id="selectAll"  resultMap="UserMap">
+		select * from user
+	</select>
+
+	<select id="selectAllBywhere"  resultMap="UserMap"  parameterType="map">
+		select * from user
+		<where>
+		<choose>
+			<when test="sex!=null">
+				and user_sex=#{sex}
+			</when>
+			<when test="name!=null">
+				and user_name=#{name}
+			</when>
+
+			<otherwise>
+				and YEAR(now()) -YEAR(user_birth)
+				between #{start} and #{end}
+			</otherwise>
+
+		</choose>
+		</where>
+	</select>
+
+
+	<select id="selectByArrayId" parameterType="java.util.List" resultMap="UserMap">
+		select * from user
+		<where>
+			<if test="list!=null">
+
+
+				user_id  in
+				<foreach collection="list" item="user_id" open="(" separator=","  close=")">
+					#{user_id}
+				</foreach>
+
+		</if>
+		</where>
+	</select>
+
+	<!--<select id="selectById"   resultMap="EmployeeEntityMap" parameterType="java.lang.Integer">-->
+		<!--select * from Employee_copy where  emp_id=#{id}-->
+	<!--</select>-->
+
+	<!--<select id="selectByEmployeeEntity"   resultMap="EmployeeEntityMap" parameterType="employeeEntity">-->
+		<!--select * from Employee_copy where  emp_id=#{id}-->
+	<!--</select>-->
+
+</mapper>

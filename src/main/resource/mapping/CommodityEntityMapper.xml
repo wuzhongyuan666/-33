@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 
+	namespace唯一表示此名字下的crud语句
+ -->
+<mapper namespace="user">
+	<!-- 
+		id:唯一表示此crud语句
+		resultType:限定返回类型或泛型约束类型
+		parameterType:传参的数据类型
+	 -->
+	<select id="selectAll" resultType="c.cn.bean.User">
+		select user_id as id ,user_name as name,user_password as password ,user_sex as sex ,user_nickname as nick ,user_phone as phone
+		from user
+	</select>
+
+	<insert id="inser" parameterType="c.cn.bean.User"  >
+		insert into user(user_name,user_password,user_sex,user_nickname,user_phone) VALUES (#{name},#{password},#{sex},#{nick},#{phone})
+	</insert>
+	<!--  # 预编译  防注入    $ 拼接
+	-->
+	<!--<select id="login"  parameterType="java.util.HashMap" resultType="com.cn.bean.CommodityEntity">-->
+		  <!--select  *  from Commodity where  name='${name}'-->
+	<!--</select>-->
+
+	<!--<insert id="addCommodityEntity" parameterType="com.cn.bean.CommodityEntity">-->
+		<!--insert into Commodity(name,type,startTime,endTime,manufacturer,format)-->
+		<!--VALUES (#{name},#{type},#{startTime},#{endTime},#{manufacturer},#{format})-->
+	<!--</insert>-->
+	<!--<delete id="deleteById" parameterType="java.lang.Integer" >-->
+		<!--delete from Commodity where id=#{id}-->
+	<!--</delete>-->
+	<!--<update id="updateName" parameterType="java.util.HashMap" >-->
+		<!--update Commodity set name=#{name} where id=#{id}-->
+	<!--</update>-->
+
+	<!--
+	-->
+</mapper>

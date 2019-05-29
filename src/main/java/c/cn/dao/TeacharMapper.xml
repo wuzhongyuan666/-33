@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 
+	namespace唯一表示此名字下的crud语句
+ -->
+<mapper namespace="c.cn.dao.TeacharMapper">
+	<resultMap id="teacharMap" type="teachar">
+		<id property="id" column="teachar_id"></id>
+		<result property="name" column="teahar_name"></result>
+		<!--一对多-->
+		<collection property="students" ofType="student">
+				<id property="id" column="student_id"></id>
+			<result property="name" column="student_name"></result>
+		</collection>
+	</resultMap>
+
+
+	<select id="selectAll" resultMap="teacharMap">
+		select t.teachar_id,t.teahar_name,s.student_id,s.student_name from teachar t left JOIN
+		student_teachar st ON t.teachar_id=st.teachar_id LEFT JOIN students s on st.student_id=s.student_id
+	</select>
+
+	<!--<insert id="insert"  parameterType="c.cn.bean.Plate">-->
+		<!--inser into plate(plate_name,plate_describe) VALUES (#{name},#{describe})-->
+	<!--</insert>-->
+
+</mapper>

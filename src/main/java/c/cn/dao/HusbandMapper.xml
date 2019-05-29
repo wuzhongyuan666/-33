@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 
+	namespace唯一表示此名字下的crud语句
+ -->
+<mapper namespace="c.cn.dao.HusbandMapper">
+		<resultMap id="HusbandMap" type="husband">
+				<id property="id" column="Husband_id"></id>
+			  <result property="name" column="Husband_name"></result>
+			<result property="phone" column="Husband_phone"></result>
+
+			<association property="wife" javaType="wife">
+				<id property="id" column="wife_id"></id>
+				<result property="name" column="wife_name"></result>
+				<result property="phone" column="Wife_phone" ></result>
+
+			</association>
+		</resultMap>
+
+
+	<select id="selectAll" resultMap="HusbandMap">
+		select
+		w.wife_id,w.wife_name,h.Husband_id,h.Husband_name
+		from wife  w
+		right join
+		husband h
+		on w.wife_id=h.wife_id
+	</select>
+
+</mapper>

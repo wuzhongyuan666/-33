@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 
+	namespace唯一表示此名字下的crud语句
+ -->
+<mapper namespace="c.cn.dao.SonMapper">
+		<resultMap id="SonMap" type="son">
+				<id property="id" column="son_id"></id>
+			  <result property="name" column="son_name"></result>
+			<!--一对多-->
+			<association property="sons" javaType="son">
+				<id property="id" column="son_id"></id>
+				<result property="name" column="son_name"></result>
+			</association>
+		</resultMap>
+
+
+	<select id="selectAll" resultMap="SonMap">
+		select
+		f.fathor_id,f.fathor_name,s.son_id,s.son_name
+		from fathor f
+		left join
+		son s
+		on f.fathor_id=s.fathor_id
+	</select>
+
+</mapper>

@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 
+	namespace唯一表示此名字下的crud语句
+ -->
+<mapper namespace="c.cn.dao.StudentMapper">
+	<resultMap id="studentMap" type="student">
+
+	</resultMap>
+	<!--<select id="seleteall" resultType="c.cn.bean.Plate">-->
+		<!--select * from plate-->
+	<!--</select>-->
+
+	<!--<insert id="insert"  parameterType="c.cn.bean.Plate">-->
+		<!--inser into plate(plate_name,plate_describe) VALUES (#{name},#{describe})-->
+	<!--</insert>-->
+
+</mapper>

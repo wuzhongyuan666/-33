@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<setting name="logImpl" value="STDOUT_LOGGING"/>
+	</settings>
+
+	<typeAliases>
+		<!--<typeAlias type="com.cn.bean.EmployeeEntity" alias="aaa"/>-->
+		<!--扫描包下所有类 和类定义别名-->
+		<package name="c/cn/bean" />
+	</typeAliases>
+
+	<environments default="development">
+		<environment id="development">
+			<!-- 使用jdbc的事务，mybatis进行管理 -->
+			<transactionManager type="JDBC" />
+			<!-- 使用jdbc的连接池连接数据库 -->
+			<dataSource type="POOLED">
+				<property name="driver" value="com.mysql.jdbc.Driver" />
+				<property name="url" value="jdbc:mysql://localhost:3306/wzy" />
+				<property name="username" value="root" />
+				<property name="password" value="102030" />
+			</dataSource>
+		</environment>
+	</environments>
+	<!-- 映射文件的配置 -->
+	<mappers>
+		<package name="c/cn/dao"></package>
+		<!--<mapper resource="mapping/PlateMapper.xml"/>-->
+	</mappers>
+</configuration>
