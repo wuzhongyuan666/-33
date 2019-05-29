@@ -14,6 +14,7 @@ import java.util.*;
 public class ClassScanner {
 
     public static List<String> scannerClass(String path) {
+        System.out.println("1232132");
         List<String> result = new ArrayList<>(16);
         URL resource = ClassScanner.class.getResource("/" + path);
         //获取路径
